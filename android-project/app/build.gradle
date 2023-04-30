@@ -11,7 +11,7 @@ android {
     compileSdkVersion 33
     defaultConfig {
         if (buildAsApplication) {
-            applicationId "org.meta-team.terminal-x"
+            applicationId "org.metateam.terminalx"
         }
         minSdkVersion 21
         targetSdkVersion 33

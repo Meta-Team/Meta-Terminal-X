@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "org.libsdl.app",
+  "applicationId": "org.metateam.terminalx",
   "variantName": "release",
   "elements": [
     {
