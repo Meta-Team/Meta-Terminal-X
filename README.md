@@ -1,5 +1,5 @@
 # Meta-Terminal-X
-An cross-platform elegant terminal for both Meta-Embedded and Meta-Vision-SolaisNG based on SDL2
+An elegant cross-platform terminal for both Meta-Embedded and Meta-Vision-SolaisNG based on SDL2
 
 # TODO List
 1. CI/CD
