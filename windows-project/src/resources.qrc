@@ -1,0 +1,251 @@
+<RCC>
+  <qresource prefix="/">
+    <file>res/iconbmp/3d bar chart.bmp</file>
+    <file>res/iconbmp/3d chart.bmp</file>
+    <file>res/iconbmp/3d graph.bmp</file>
+    <file>res/iconbmp/16 colors.bmp</file>
+    <file>res/iconbmp/256 colors.bmp</file>
+    <file>res/iconbmp/About.bmp</file>
+    <file>res/iconbmp/Add folder.bmp</file>
+    <file>res/iconbmp/Add.bmp</file>
+    <file>res/iconbmp/Angle.bmp</file>
+    <file>res/iconbmp/Apply.bmp</file>
+    <file>res/iconbmp/Arc.bmp</file>
+    <file>res/iconbmp/Arrow.bmp</file>
+    <file>res/iconbmp/Attach.bmp</file>
+    <file>res/iconbmp/Back.bmp</file>
+    <file>res/iconbmp/Bitmap editor.bmp</file>
+    <file>res/iconbmp/Brightness.bmp</file>
+    <file>res/iconbmp/Brush.bmp</file>
+    <file>res/iconbmp/Camera.bmp</file>
+    <file>res/iconbmp/Cancel.bmp</file>
+    <file>res/iconbmp/Chart xy.bmp</file>
+    <file>res/iconbmp/Check boxes.bmp</file>
+    <file>res/iconbmp/Circle.bmp</file>
+    <file>res/iconbmp/Clear.bmp</file>
+    <file>res/iconbmp/Clipboard.bmp</file>
+    <file>res/iconbmp/Close file.bmp</file>
+    <file>res/iconbmp/Close folder.bmp</file>
+    <file>res/iconbmp/Close.bmp</file>
+    <file>res/iconbmp/CMYK.bmp</file>
+    <file>res/iconbmp/Coffe.bmp</file>
+    <file>res/iconbmp/Coffee.bmp</file>
+    <file>res/iconbmp/Color balance.bmp</file>
+    <file>res/iconbmp/Color filter.bmp</file>
+    <file>res/iconbmp/Color layers.bmp</file>
+    <file>res/iconbmp/Color palette.bmp</file>
+    <file>res/iconbmp/Color profile.bmp</file>
+    <file>res/iconbmp/Color test.bmp</file>
+    <file>res/iconbmp/Color.bmp</file>
+    <file>res/iconbmp/Comment.bmp</file>
+    <file>res/iconbmp/Contrast.bmp</file>
+    <file>res/iconbmp/Copy.bmp</file>
+    <file>res/iconbmp/Create.bmp</file>
+    <file>res/iconbmp/Critical details.bmp</file>
+    <file>res/iconbmp/Curve points.bmp</file>
+    <file>res/iconbmp/Curve.bmp</file>
+    <file>res/iconbmp/Cut.bmp</file>
+    <file>res/iconbmp/Danger.bmp</file>
+    <file>res/iconbmp/Decrease time.bmp</file>
+    <file>res/iconbmp/Delete frame.bmp</file>
+    <file>res/iconbmp/Delete frames.bmp</file>
+    <file>res/iconbmp/Delete.bmp</file>
+    <file>res/iconbmp/Designer.bmp</file>
+    <file>res/iconbmp/Diagram.bmp</file>
+    <file>res/iconbmp/Down.bmp</file>
+    <file>res/iconbmp/Download image.bmp</file>
+    <file>res/iconbmp/Download.bmp</file>
+    <file>res/iconbmp/Dropper.bmp</file>
+    <file>res/iconbmp/Edit page.bmp</file>
+    <file>res/iconbmp/Edit text.bmp</file>
+    <file>res/iconbmp/Edit.bmp</file>
+    <file>res/iconbmp/Ellipse.bmp</file>
+    <file>res/iconbmp/E-mail.bmp</file>
+    <file>res/iconbmp/Equipment.bmp</file>
+    <file>res/iconbmp/Erase.bmp</file>
+    <file>res/iconbmp/Eraser.bmp</file>
+    <file>res/iconbmp/Error.bmp</file>
+    <file>res/iconbmp/Exit.bmp</file>
+    <file>res/iconbmp/Export.bmp</file>
+    <file>res/iconbmp/Favourites.bmp</file>
+    <file>res/iconbmp/Feather.bmp</file>
+    <file>res/iconbmp/File exetension.bmp</file>
+    <file>res/iconbmp/Fill.bmp</file>
+    <file>res/iconbmp/Find.bmp</file>
+    <file>res/iconbmp/Fine brush.bmp</file>
+    <file>res/iconbmp/Flip horizontally.bmp</file>
+    <file>res/iconbmp/Flip vertically.bmp</file>
+    <file>res/iconbmp/Flip.bmp</file>
+    <file>res/iconbmp/Flow block.bmp</file>
+    <file>res/iconbmp/Flower.bmp</file>
+    <file>res/iconbmp/Folder.bmp</file>
+    <file>res/iconbmp/Form.bmp</file>
+    <file>res/iconbmp/Forward.bmp</file>
+    <file>res/iconbmp/Frames.bmp</file>
+    <file>res/iconbmp/Funnel.bmp</file>
+    <file>res/iconbmp/Go down.bmp</file>
+    <file>res/iconbmp/Go up.bmp</file>
+    <file>res/iconbmp/Gpadient.bmp</file>
+    <file>res/iconbmp/Graphic designer.bmp</file>
+    <file>res/iconbmp/Graphic file.bmp</file>
+    <file>res/iconbmp/Graphic tools.bmp</file>
+    <file>res/iconbmp/Grid.bmp</file>
+    <file>res/iconbmp/Help book.bmp</file>
+    <file>res/iconbmp/Help.bmp</file>
+    <file>res/iconbmp/Hexagon.bmp</file>
+    <file>res/iconbmp/Hide.bmp</file>
+    <file>res/iconbmp/Hint.bmp</file>
+    <file>res/iconbmp/Hints.bmp</file>
+    <file>res/iconbmp/Home.bmp</file>
+    <file>res/iconbmp/Homepage.bmp</file>
+    <file>res/iconbmp/HSL.bmp</file>
+    <file>res/iconbmp/HSV.bmp</file>
+    <file>res/iconbmp/Ico.bmp</file>
+    <file>res/iconbmp/Icon wizard.bmp</file>
+    <file>res/iconbmp/Import.bmp</file>
+    <file>res/iconbmp/Increase time.bmp</file>
+    <file>res/iconbmp/Index.bmp</file>
+    <file>res/iconbmp/Info.bmp</file>
+    <file>res/iconbmp/Key.bmp</file>
+    <file>res/iconbmp/Knife.bmp</file>
+    <file>res/iconbmp/LAB color model.bmp</file>
+    <file>res/iconbmp/Layers.bmp</file>
+    <file>res/iconbmp/Left.bmp</file>
+    <file>res/iconbmp/Left-right.bmp</file>
+    <file>res/iconbmp/Line.bmp</file>
+    <file>res/iconbmp/List.bmp</file>
+    <file>res/iconbmp/Lock color.bmp</file>
+    <file>res/iconbmp/Lock transparency.bmp</file>
+    <file>res/iconbmp/Lock.bmp</file>
+    <file>res/iconbmp/Magic hat.bmp</file>
+    <file>res/iconbmp/Measure.bmp</file>
+    <file>res/iconbmp/Microsoft flag.bmp</file>
+    <file>res/iconbmp/Monitor.bmp</file>
+    <file>res/iconbmp/Monitors.bmp</file>
+    <file>res/iconbmp/Mouse pointer.bmp</file>
+    <file>res/iconbmp/Mouse.bmp</file>
+    <file>res/iconbmp/Move.bmp</file>
+    <file>res/iconbmp/Movie.bmp</file>
+    <file>res/iconbmp/New clip art.bmp</file>
+    <file>res/iconbmp/New file.bmp</file>
+    <file>res/iconbmp/New frame.bmp</file>
+    <file>res/iconbmp/New frame1.bmp</file>
+    <file>res/iconbmp/New image.bmp</file>
+    <file>res/iconbmp/New imagelist.bmp</file>
+    <file>res/iconbmp/New video.bmp</file>
+    <file>res/iconbmp/No.bmp</file>
+    <file>res/iconbmp/Objects.bmp</file>
+    <file>res/iconbmp/Ok.bmp</file>
+    <file>res/iconbmp/Open colors.bmp</file>
+    <file>res/iconbmp/Open file.bmp</file>
+    <file>res/iconbmp/Open v2.bmp</file>
+    <file>res/iconbmp/Open.bmp</file>
+    <file>res/iconbmp/Paint over pixels.bmp</file>
+    <file>res/iconbmp/Painter.bmp</file>
+    <file>res/iconbmp/Pantone.bmp</file>
+    <file>res/iconbmp/Paste.bmp</file>
+    <file>res/iconbmp/Pen.bmp</file>
+    <file>res/iconbmp/Pencil.bmp</file>
+    <file>res/iconbmp/Pick color.bmp</file>
+    <file>res/iconbmp/Picture.bmp</file>
+    <file>res/iconbmp/Pie chart.bmp</file>
+    <file>res/iconbmp/Pin.bmp</file>
+    <file>res/iconbmp/Pinion.bmp</file>
+    <file>res/iconbmp/Pixel editor.bmp</file>
+    <file>res/iconbmp/Pixels.bmp</file>
+    <file>res/iconbmp/Play.bmp</file>
+    <file>res/iconbmp/Preview.bmp</file>
+    <file>res/iconbmp/Print.bmp</file>
+    <file>res/iconbmp/Problem.bmp</file>
+    <file>res/iconbmp/Properties.bmp</file>
+    <file>res/iconbmp/Red book.bmp</file>
+    <file>res/iconbmp/Red eye removing.bmp</file>
+    <file>res/iconbmp/Redo.bmp</file>
+    <file>res/iconbmp/Refresh.bmp</file>
+    <file>res/iconbmp/Registration.bmp</file>
+    <file>res/iconbmp/Registry.bmp</file>
+    <file>res/iconbmp/Rename.bmp</file>
+    <file>res/iconbmp/Replace pixels.bmp</file>
+    <file>res/iconbmp/Resize image.bmp</file>
+    <file>res/iconbmp/Restangle.bmp</file>
+    <file>res/iconbmp/Revert.bmp</file>
+    <file>res/iconbmp/RGB.bmp</file>
+    <file>res/iconbmp/Right.bmp</file>
+    <file>res/iconbmp/Rotate CCW.bmp</file>
+    <file>res/iconbmp/Rotate CW.bmp</file>
+    <file>res/iconbmp/Rotate left.bmp</file>
+    <file>res/iconbmp/Rotate right.bmp</file>
+    <file>res/iconbmp/Rotation.bmp</file>
+    <file>res/iconbmp/Rounded rectangle.bmp</file>
+    <file>res/iconbmp/Save as.bmp</file>
+    <file>res/iconbmp/Save color.bmp</file>
+    <file>res/iconbmp/Save data.bmp</file>
+    <file>res/iconbmp/Save image.bmp</file>
+    <file>res/iconbmp/Save picture.bmp</file>
+    <file>res/iconbmp/Save.bmp</file>
+    <file>res/iconbmp/Scan film.bmp</file>
+    <file>res/iconbmp/Scan image.bmp</file>
+    <file>res/iconbmp/Scanner.bmp</file>
+    <file>res/iconbmp/Scenario.bmp</file>
+    <file>res/iconbmp/Script.bmp</file>
+    <file>res/iconbmp/Search computer.bmp</file>
+    <file>res/iconbmp/Search folder.bmp</file>
+    <file>res/iconbmp/Search online.bmp</file>
+    <file>res/iconbmp/Search text.bmp</file>
+    <file>res/iconbmp/Search.bmp</file>
+    <file>res/iconbmp/Select gpadient.bmp</file>
+    <file>res/iconbmp/Selection.bmp</file>
+    <file>res/iconbmp/Settings.bmp</file>
+    <file>res/iconbmp/Sharpness.bmp</file>
+    <file>res/iconbmp/Show.bmp</file>
+    <file>res/iconbmp/Sizes.bmp</file>
+    <file>res/iconbmp/Smooth line.bmp</file>
+    <file>res/iconbmp/Smooth.bmp</file>
+    <file>res/iconbmp/Spell checking.bmp</file>
+    <file>res/iconbmp/Spiral.bmp</file>
+    <file>res/iconbmp/Spray.bmp</file>
+    <file>res/iconbmp/Square.bmp</file>
+    <file>res/iconbmp/Stop playing.bmp</file>
+    <file>res/iconbmp/Stop.bmp</file>
+    <file>res/iconbmp/Synchronize.bmp</file>
+    <file>res/iconbmp/Tag.bmp</file>
+    <file>res/iconbmp/Target.bmp</file>
+    <file>res/iconbmp/Target1.bmp</file>
+    <file>res/iconbmp/Test line.bmp</file>
+    <file>res/iconbmp/Text color.bmp</file>
+    <file>res/iconbmp/Text replace.bmp</file>
+    <file>res/iconbmp/Text tool.bmp</file>
+    <file>res/iconbmp/Time.bmp</file>
+    <file>res/iconbmp/Tip of the day.bmp</file>
+    <file>res/iconbmp/To do list.bmp</file>
+    <file>res/iconbmp/Tools.bmp</file>
+    <file>res/iconbmp/Touch.bmp</file>
+    <file>res/iconbmp/Transparency.bmp</file>
+    <file>res/iconbmp/Transparent background.bmp</file>
+    <file>res/iconbmp/Transparent color.bmp</file>
+    <file>res/iconbmp/Triangle.bmp</file>
+    <file>res/iconbmp/True color.bmp</file>
+    <file>res/iconbmp/Undo.bmp</file>
+    <file>res/iconbmp/Units.bmp</file>
+    <file>res/iconbmp/Unlock.bmp</file>
+    <file>res/iconbmp/Up.bmp</file>
+    <file>res/iconbmp/Up-down.bmp</file>
+    <file>res/iconbmp/Upload image.bmp</file>
+    <file>res/iconbmp/Wait.bmp</file>
+    <file>res/iconbmp/Warning.bmp</file>
+    <file>res/iconbmp/Web designer.bmp</file>
+    <file>res/iconbmp/Webcam.bmp</file>
+    <file>res/iconbmp/Wide brush.bmp</file>
+    <file>res/iconbmp/Wizard.bmp</file>
+    <file>res/iconbmp/Work area.bmp</file>
+    <file>res/iconbmp/Writing pencil.bmp</file>
+    <file>res/iconbmp/Wrong.bmp</file>
+    <file>res/iconbmp/Yes.bmp</file>
+    <file>res/iconbmp/YUV color space.bmp</file>
+    <file>res/iconbmp/Zoom auto.bmp</file>
+    <file>res/iconbmp/Zoom in.bmp</file>
+    <file>res/iconbmp/Zoom out.bmp</file>
+    <file>res/iconbmp/Zoom.bmp</file>
+    <file>res/meta_logo.jpeg</file>
+  </qresource>
+</RCC>

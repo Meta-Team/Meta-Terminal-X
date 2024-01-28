@@ -29,6 +29,7 @@
 
 #include <ThemeWidget.hpp>
 #include <iostream>
+#include <thread>
 #include <ui_main.h>
 
 #include <QtCharts/QAbstractBarSeries>
@@ -57,7 +58,7 @@
 #include <QtWidgets/QSpinBox>
 
 ThemeWidget::ThemeWidget(QWidget *parent)
-	: QWidget(parent), m_listCount(3), m_valueMax(10), m_valueCount(7),
+	: QWidget(parent), m_listCount(3), m_valueMax(10), m_valueCount(70),
 	  m_dataTable(generateRandomData(m_listCount, m_valueMax, m_valueCount)), m_ui(new Ui_ThemeWidgetForm) {
 	m_ui->setupUi(this);
 	populateThemeBox();

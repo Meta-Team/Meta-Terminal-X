@@ -1,22 +1,12 @@
-#include "qmainwindow.h"
-#include "qwidget.h"
 #include <QApplication>
-#include <QWidget>
-#include <QtOpenGL/QtOpenGL>
-#include <Qtcharts/QtCharts>
-#include <ThemeWidget.hpp>
-#include <ui_main.h>
-
+#include <TerminalWindow.hpp>
 int main(int argc, char *argv[]) {
 	QApplication app(argc, argv);
-
-	// Create the main window
-	QMainWindow window;
-	window.setWindowTitle("QT5.15 Demo");
-	ThemeWidget *widget = new ThemeWidget();
-	window.setCentralWidget(widget);
-	window.resize(1280, 800);
-	// Display the window
-	window.show();
+	//int a[4];
+	//int *b = new int[4];
+	//printf("&a[0]=%p,&a[1]=%p,&a[2]=%p,&a[3]=%p\n&b[0]=%p,&b[1]=%p,&b[2]=%p,&b[3]=%p\n",&a[0],&a[1],&a[2],&a[3],&b[0],&b[1],&b[2],&b[3]);
+	//printf("typeof(int*)=%d\n",sizeof(int*));
+	TerminalWindow terminal;
+	terminal.show();
 	return app.exec();
 }

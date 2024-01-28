@@ -15,7 +15,6 @@ QT_CHARTS_END_NAMESPACE
 typedef QPair<QPointF, QString> Data;
 typedef QList<Data> DataList;
 typedef QList<DataList> DataTable;
-
 QT_CHARTS_USE_NAMESPACE
 
 class ThemeWidget : public QWidget {
