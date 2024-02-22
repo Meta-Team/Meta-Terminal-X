@@ -16,7 +16,7 @@ if(CMAKE_VERSION VERSION_LESS "3.7.0")
     set(CMAKE_INCLUDE_CURRENT_DIR ON)
 endif()
 
-find_package(Qt5 COMPONENTS Widgets Core Charts Gui SerialPort REQUIRED)
+find_package(Qt6 COMPONENTS Widgets Core Charts Gui SerialPort REQUIRED)
 # In order to place ui file different from include directory
 # see https://stackoverflow.com/questions/40630820/how-to-place-header-and-ui-file-in-different-folders-using-autouic-in-cmake
 list(APPEND CMAKE_AUTOUIC_SEARCH_PATHS ${CMAKE_SOURCE_DIR}/src)
@@ -39,4 +39,4 @@ add_executable(Meta-Terminal-X
     src/resources.qrc
 )
 
-target_link_libraries(Meta-Terminal-X Qt5::Widgets Qt5::Core Qt5::Charts Qt5::Gui Qt5::SerialPort)
+target_link_libraries(Meta-Terminal-X Qt6::Widgets Qt6::Core Qt6::Charts Qt6::Gui Qt6::SerialPort)

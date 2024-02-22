@@ -114,7 +114,7 @@ void ControlPanel::ReadData() {
 		// exclude `!fb,` and `\r\n`
 		QString feedbackStr = m_recvBuffer.mid(strBegin + 4, strEnd - strBegin);
 		unsigned int timestamp = 0, motorId = 0;
-		sscanf_s(feedbackStr.toStdString().c_str(), "%u,%u,%f,%f,%f,%f,%d,%d", &timestamp, &motorId, &m_actualAngle,
+		sscanf(feedbackStr.toStdString().c_str(), "%u,%u,%f,%f,%f,%f,%d,%d", &timestamp, &motorId, &m_actualAngle,
 				 &m_targetAngle, &m_actualVelocity, &m_targetVelocity, &m_actualCurrent, &m_targetCurrent);
 		m_ConsoleBox->insertPlainText("FeedBack:" + feedbackStr + "\n");
 		m_recvBuffer = m_recvBuffer.mid(strEnd + 2);
