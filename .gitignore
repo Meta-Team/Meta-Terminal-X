@@ -89,3 +89,4 @@ compile_commands.json
 *_qmlcache.qrc
 
 .cache
+.DS_Store
