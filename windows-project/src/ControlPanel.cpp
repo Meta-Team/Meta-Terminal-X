@@ -120,8 +120,8 @@ void ControlPanel::ReadData() {
 		unsigned timestamp = 0, motorId = 0;
 		sscanf(feedbackStr.toStdString().c_str(), "%u,%u,%f,%f,%f,%f,%d,%d", &timestamp, &motorId, &m_actualAngle, &m_targetAngle,
 			   &m_actualVelocity, &m_targetVelocity, &m_actualCurrent, &m_targetCurrent);
-		//m_ConsoleBox->insertPlainText("FeedBack:" + feedbackStr + "\n");
-		m_recvBuffer = m_recvBuffer.mid(strEnd + 2);
+		// m_ConsoleBox->insertPlainText("FeedBack:" + feedbackStr + "\n");
+		m_recvBuffer = m_recvBuffer.mid(0, strBegin) + m_recvBuffer.mid(strEnd + 2);
 		m_dynamicChartView[A_CHART]->updateData(timestamp, m_actualAngle, m_targetAngle);
 		m_dynamicChartView[V_CHART]->updateData(timestamp, m_actualVelocity, m_targetVelocity);
 		m_dynamicChartView[I_CHART]->updateData(timestamp, m_actualCurrent, m_targetCurrent);
@@ -131,12 +131,10 @@ void ControlPanel::ReadData() {
 		//    m_actualAngle, m_targetAngle, m_actualVelocity, m_targetVelocity, m_actualCurrent, m_targetCurrent);
 		// printf("ShrinkedBufferSize=%d\n", m_recvBuffer.length());
 	}
-	while ((strBegin = m_recvBuffer.indexOf("!fb,")) != -1 && (strEnd = m_recvBuffer.indexOf("\r\n", strBegin)) != -1) {
-		// exclude `!fb,` and `\r\n`
-		QString feedbackStr = m_recvBuffer.mid(strBegin + 4, strEnd - strBegin);
-		unsigned timestamp = 0, motorId = 0;
-		sscanf(feedbackStr.toStdString().c_str(), "%u,%u,%f,%f,%f,%f,%d,%d", &timestamp, &motorId, &m_actualAngle, &m_targetAngle,
-			   &m_actualVelocity, &m_targetVelocity, &m_actualCurrent, &m_targetCurrent);
+	while ((strEnd = m_recvBuffer.indexOf("\r\n")) != -1) {
+		// Now all commands are resolved, then the rest is normal message
+		m_ConsoleBox->insertPlainText(m_recvBuffer.mid(0, strEnd) + "\n");
+		m_recvBuffer = m_recvBuffer.mid(strEnd + 2);
 	}
 }
 void ControlPanel::WriteData(const QByteArray &data) { m_SerialPort->write(data); }

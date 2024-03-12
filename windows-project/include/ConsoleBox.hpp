@@ -10,4 +10,6 @@ class ConsoleBox: public QPlainTextEdit{
         ~ConsoleBox();
     protected:
         void keyPressEvent(QKeyEvent*) override;
+        void mousePressEvent(QMouseEvent*) override;
+        void mouseDoubleClickEvent(QMouseEvent*) override;
 };
