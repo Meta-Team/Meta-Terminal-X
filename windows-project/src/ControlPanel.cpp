@@ -10,6 +10,7 @@
 #include <qpushbutton.h>
 #include <qserialport.h>
 #include <qserialportinfo.h>
+#include <qslider.h>
 #include <qvalidator.h>
 #include <qwindowdefs.h>
 ControlPanel::ControlPanel()
@@ -18,8 +19,11 @@ ControlPanel::ControlPanel()
 	m_ui->setupUi(this);
 	m_ui->verticalLayout_Console->addWidget(m_ConsoleBox);
 	m_dynamicChartView[A_CHART] = new DynamicChart(this, "Angle");
+	m_dynamicChartView[A_CHART]->setYRange(-190.0f, 190.0f);
 	m_dynamicChartView[V_CHART] = new DynamicChart(this, "Velocity");
+	m_dynamicChartView[V_CHART]->setYRange(-500.0f, 500.0f);
 	m_dynamicChartView[I_CHART] = new DynamicChart(this, "Current");
+	m_dynamicChartView[I_CHART]->setYRange(-500.f, 500.f);
 
 	m_ui->hL_Charts->addWidget(m_dynamicChartView[A_CHART]);
 	m_ui->hL_Charts->addWidget(m_dynamicChartView[V_CHART]);
@@ -33,6 +37,8 @@ ControlPanel::ControlPanel()
 	connect(m_ui->pushButton_SerialConnect, &QPushButton::clicked, this, &ControlPanel::SerialConnect);
 	connect(m_SerialPort, &QSerialPort::readyRead, this, &ControlPanel::ReadData);
 	connect(m_ConsoleBox, &ConsoleBox::getData, this, &ControlPanel::WriteData);
+
+	// connect signals from PID UI
 	// update UI: COM status
 	connect(m_SerialConfigdialog, &SerialConfigDialog::updateCOMLabel, this, &ControlPanel::updateCOMLabel);
 	// disable consolebox
@@ -66,9 +72,6 @@ void ControlPanel::SerialConnect() {
 		m_ui->pushButton_SerialConnect->setText("Disconnect");
 		m_ui->pushButton_SerialConfig->setEnabled(false);
 		m_ConsoleBox->setEnabled(true);
-		for (auto &&child : m_ui->gL_PID->findChildren<QSlider *>()) {
-			child->setEnabled(true);
-		}
 		// m_console->setLocalEchoEnabled(p.localEchoEnabled);
 		// m_ui->actionConnect->setEnabled(false);
 		// m_ui->actionDisconnect->setEnabled(true);
@@ -89,9 +92,6 @@ void ControlPanel::SerialDisconnect() {
 		m_ui->pushButton_SerialConnect->setText("Connect");
 		m_ui->pushButton_SerialConfig->setEnabled(true);
 		m_ConsoleBox->setEnabled(false);
-		for (auto &&child : m_ui->gL_PID->findChildren<QSlider *>()) {
-			child->setEnabled(false);
-		}
 		this->showStatusMessage("Serial disconnected", 1000);
 	} else {
 		this->showStatusMessage("Already disconnected", 1000);
@@ -103,30 +103,43 @@ void ControlPanel::ReadData() {
 	// template
 	// !fb,%u,%u,%.2f,%.2f,%.2f,%.2f,%d,%d
 	// example data
-	// !fb,12353,0,23.67,41.78,340.01,-14.28,1422,3546
+	// !fb,1187120,5,8.43,0.00,0.00,0.00,52,0
+	// systime, motorId
 	// angle: actual,target
 	// velocity: actual,target
 	// torque_current: actual,target
 	m_recvBuffer += m_SerialPort->readAll();
 	unsigned long long strBegin, strEnd;
 	// printf("Begin>>>\n%s<<<End\n", m_recvBuffer.toStdString().c_str());
-	if ((strBegin = m_recvBuffer.indexOf("!fb,")) != -1 && (strEnd = m_recvBuffer.indexOf("\r\n", strBegin)) != -1) {
+	// printf("BufferSize=%d\n", m_recvBuffer.length());
+
+	// digest a big group of lines using loop
+	while ((strBegin = m_recvBuffer.indexOf("!fb,")) != -1 && (strEnd = m_recvBuffer.indexOf("\r\n", strBegin)) != -1) {
 		// exclude `!fb,` and `\r\n`
 		QString feedbackStr = m_recvBuffer.mid(strBegin + 4, strEnd - strBegin);
-		unsigned int timestamp = 0, motorId = 0;
-		sscanf(feedbackStr.toStdString().c_str(), "%u,%u,%f,%f,%f,%f,%d,%d", &timestamp, &motorId, &m_actualAngle,
-				 &m_targetAngle, &m_actualVelocity, &m_targetVelocity, &m_actualCurrent, &m_targetCurrent);
-		m_ConsoleBox->insertPlainText("FeedBack:" + feedbackStr + "\n");
+		unsigned timestamp = 0, motorId = 0;
+		sscanf(feedbackStr.toStdString().c_str(), "%u,%u,%f,%f,%f,%f,%d,%d", &timestamp, &motorId, &m_actualAngle, &m_targetAngle,
+			   &m_actualVelocity, &m_targetVelocity, &m_actualCurrent, &m_targetCurrent);
+		//m_ConsoleBox->insertPlainText("FeedBack:" + feedbackStr + "\n");
 		m_recvBuffer = m_recvBuffer.mid(strEnd + 2);
+		m_dynamicChartView[A_CHART]->updateData(timestamp, m_actualAngle, m_targetAngle);
+		m_dynamicChartView[V_CHART]->updateData(timestamp, m_actualVelocity, m_targetVelocity);
+		m_dynamicChartView[I_CHART]->updateData(timestamp, m_actualCurrent, m_targetCurrent);
 		// printf("Dropped!\nNow>>>\n%s<<<End\n", m_recvBuffer.toStdString().c_str());
-		// printf("Time:%u,MotorId=%u\nactual,target\nangle(%.2f,%.2f)\nvelocity(%.2f,%.2f)\ncurrent(%d,%d)\n", timestamp, motorId,
-		// 	   m_actualAngle, m_targetAngle, m_actualVelocity, m_targetVelocity, m_actualCurrent, m_targetCurrent);
+		// printf("Time:%u,MotorId=%u\nactual,target\nangle(%.2f,%.2f)\nvelocity(%.2f,%.2f)\ncurrent(%d,%d)\n", timestamp,
+		// motorId,
+		//    m_actualAngle, m_targetAngle, m_actualVelocity, m_targetVelocity, m_actualCurrent, m_targetCurrent);
+		// printf("ShrinkedBufferSize=%d\n", m_recvBuffer.length());
+	}
+	while ((strBegin = m_recvBuffer.indexOf("!fb,")) != -1 && (strEnd = m_recvBuffer.indexOf("\r\n", strBegin)) != -1) {
+		// exclude `!fb,` and `\r\n`
+		QString feedbackStr = m_recvBuffer.mid(strBegin + 4, strEnd - strBegin);
+		unsigned timestamp = 0, motorId = 0;
+		sscanf(feedbackStr.toStdString().c_str(), "%u,%u,%f,%f,%f,%f,%d,%d", &timestamp, &motorId, &m_actualAngle, &m_targetAngle,
+			   &m_actualVelocity, &m_targetVelocity, &m_actualCurrent, &m_targetCurrent);
 	}
 }
-void ControlPanel::WriteData(const QByteArray &data) {
-	m_dynamicChartView[A_CHART]->popBack();
-	m_SerialPort->write(data);
-}
+void ControlPanel::WriteData(const QByteArray &data) { m_SerialPort->write(data); }
 bool ControlPanel::isSerialOpen() { return this->m_SerialPort->isOpen(); }
 void ControlPanel::updateCOMLabel() {
 	const auto p = m_SerialConfigdialog->settings();
