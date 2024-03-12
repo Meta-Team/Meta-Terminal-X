@@ -74,6 +74,7 @@ void DynamicChart::updateData(unsigned timestamp, float actualData, float target
 		}
 	}
 	// set chart to adapt y axis range automatically
+	// leave 10% space for the max and min value
 	setYRange(minY - (maxY - minY) * 0.1, maxY + (maxY - minY) * 0.1);
 }
 // tool function for setting y range
