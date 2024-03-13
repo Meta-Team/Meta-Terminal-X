@@ -175,7 +175,7 @@ void ControlPanel::ReadData() {
 		// printf("ShrinkedBufferSize=%d\n", m_recvBuffer.length());
 	}
 	while ((strBegin = m_recvBuffer.indexOf("!kp,")) != -1 && (strEnd = m_recvBuffer.indexOf("\r\n", strBegin)) != -1) {
-		// !kp:%u,%.2f,ki:%.2f,kd:%.2f,il:%.2f,ol:%.2f
+		// !kp,%u,%u,%.2f,ki:%.2f,kd:%.2f,il:%.2f,ol:%.2f
 		// example data
 		QString feedbackStr = m_recvBuffer.mid(strBegin + 4, strEnd - strBegin);
 		unsigned tmp_pidType = 0, motorId = 0;
@@ -203,6 +203,8 @@ void ControlPanel::ReadData() {
 				m_AutoStraightening_D = tmp_D;
 				m_AutoStraightening_I_Limit = tmp_I_Limit;
 				m_AutoStraightening_Out_Limit = tmp_Out_Limit;
+				break;
+			default:
 				break;
 		}
 		if ((PID_TYPE)tmp_pidType == m_pidType){
