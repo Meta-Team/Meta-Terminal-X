@@ -41,10 +41,9 @@ class ControlPanel : public QWidget {
 	int m_actualCurrent = 0, m_targetCurrent = 0;
 	// PID Params
 	PID_TYPE m_pidType = V2I;
-	float m_A2V_P = 0.0f, m_A2V_I = 0.0f, m_A2V_D = 0.0f, m_A2V_I_Limit = 0.0f, m_A2V_Out_Limit = 0.0f;
-	float m_V2I_P = 0.0f, m_V2I_I = 0.0f, m_V2I_D = 0.0f, m_V2I_I_Limit = 0.0f, m_V2I_Out_Limit = 0.0f;
-	float m_AutoStraightening_P = 0.0f, m_AutoStraightening_I = 0.0f, m_AutoStraightening_D = 0.0f, m_AutoStraightening_I_Limit = 0.0f, m_AutoStraightening_Out_Limit = 0.0f;
-
+	float m_P[PID_TYPE_COUNT]={0.0f}, m_I[PID_TYPE_COUNT]={0.0f}, m_D[PID_TYPE_COUNT]={0.0f}, m_I_Limit[PID_TYPE_COUNT]={0.0f}, m_Out_Limit[PID_TYPE_COUNT]={0.0f};
+	// fetch specified PID params
+	void fetchParamsSpecified(int);
   public:
 	ControlPanel();
 	~ControlPanel();

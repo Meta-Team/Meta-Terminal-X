@@ -109,6 +109,10 @@ void ControlPanel::SerialConnect() {
 		m_ui->pushButton_SendVelocity->setEnabled(true);
 		// to print hello info and clear garbage data in the Receiver's buffer
 		m_SerialPort->write("hello\r\n");
+		// get PID params on startup
+		for(PID_TYPE pidType = A2V; pidType < PID_TYPE_COUNT; pidType = (PID_TYPE)(pidType + 1)){
+			fetchParamsSpecified(pidType);
+		}
 		this->showStatusMessage(tr("Connected successfully%1").arg(p.name), 1000);
 	} else {
 		QMessageBox::critical(this, "Error", m_SerialPort->errorString());
@@ -180,34 +184,16 @@ void ControlPanel::ReadData() {
 		QString feedbackStr = m_recvBuffer.mid(strBegin + 4, strEnd - strBegin);
 		unsigned tmp_pidType = 0, motorId = 0;
 		float tmp_P = 0.0f, tmp_I = 0.0f, tmp_D = 0.0f, tmp_I_Limit = 0.0f, tmp_Out_Limit = 0.0f;
-		sscanf(feedbackStr.toStdString().c_str(), "%u,%u,%f,%f,%f,%f,%f", &motorId,&tmp_pidType, &tmp_P, &tmp_I, &tmp_D, &tmp_I_Limit, &tmp_Out_Limit);
+		sscanf(feedbackStr.toStdString().c_str(), "%u,%u,%f,%f,%f,%f,%f", &motorId, &tmp_pidType, &tmp_P, &tmp_I, &tmp_D,
+			   &tmp_I_Limit, &tmp_Out_Limit);
 
-		switch ((PID_TYPE)tmp_pidType) {
-			case A2V:
-				m_A2V_P = tmp_P;
-				m_A2V_I = tmp_I;
-				m_A2V_D = tmp_D;
-				m_A2V_I_Limit = tmp_I_Limit;
-				m_A2V_Out_Limit = tmp_Out_Limit;
-				break;
-			case V2I:
-				m_V2I_P = tmp_P;
-				m_V2I_I = tmp_I;
-				m_V2I_D = tmp_D;
-				m_V2I_I_Limit = tmp_I_Limit;
-				m_V2I_Out_Limit = tmp_Out_Limit;
-				break;
-			case AUTOSTRAIGHTENING:
-				m_AutoStraightening_P = tmp_P;
-				m_AutoStraightening_I = tmp_I;
-				m_AutoStraightening_D = tmp_D;
-				m_AutoStraightening_I_Limit = tmp_I_Limit;
-				m_AutoStraightening_Out_Limit = tmp_Out_Limit;
-				break;
-			default:
-				break;
-		}
-		if ((PID_TYPE)tmp_pidType == m_pidType){
+		m_P[tmp_pidType] = tmp_P;
+		m_I[tmp_pidType] = tmp_I;
+		m_D[tmp_pidType] = tmp_D;
+		m_I_Limit[tmp_pidType] = tmp_I_Limit;
+		m_Out_Limit[tmp_pidType] = tmp_Out_Limit;
+
+		if ((PID_TYPE)tmp_pidType == m_pidType) {
 			// update UI
 			m_ui->lineEdit_Saved_P->setText(QString::number(tmp_P));
 			m_ui->lineEdit_Saved_I->setText(QString::number(tmp_I));
@@ -255,70 +241,44 @@ void ControlPanel::disableV2I() { m_SerialPort->write(tr("set_disable_v %1\r\n")
 void ControlPanel::enableFB() { m_SerialPort->write(tr("fb_enable %1\r\n").arg(currentMotor).toLocal8Bit()); }
 void ControlPanel::disableFB() { m_SerialPort->write(tr("fb_disable %1\r\n").arg(currentMotor).toLocal8Bit()); }
 void ControlPanel::fetchParams() { m_SerialPort->write(tr("echo_pid %1 %2\r\n").arg(currentMotor).arg(m_pidType).toLocal8Bit()); }
+void ControlPanel::fetchParamsSpecified(int pidType) {
+	m_SerialPort->write(tr("echo_pid %1 %2\r\n").arg(currentMotor).arg(pidType).toLocal8Bit());
+}
 void ControlPanel::sendParams() {
-	float tmp_P, tmp_I, tmp_D, tmp_I_Limit, tmp_Out_Limit;
-	switch (m_pidType) {
-	case A2V:
-		m_A2V_P = tmp_P = m_ui->lineEdit_Saved_P->text().toFloat();
-		m_A2V_I = tmp_I = m_ui->lineEdit_Saved_I->text().toFloat();
-		m_A2V_D = tmp_D = m_ui->lineEdit_Saved_D->text().toFloat();
-		m_A2V_I_Limit = tmp_I_Limit = m_ui->lineEdit_Saved_I_Limit->text().toFloat();
-		m_A2V_Out_Limit = tmp_Out_Limit = m_ui->lineEdit_Saved_Out_Limit->text().toFloat();
-		break;
-	case V2I:
-		m_V2I_P = tmp_P = m_ui->lineEdit_Saved_P->text().toFloat();
-		m_V2I_I = tmp_I = m_ui->lineEdit_Saved_I->text().toFloat();
-		m_V2I_D = tmp_D = m_ui->lineEdit_Saved_D->text().toFloat();
-		m_V2I_I_Limit = tmp_I_Limit = m_ui->lineEdit_Saved_I_Limit->text().toFloat();
-		m_V2I_Out_Limit = tmp_Out_Limit = m_ui->lineEdit_Saved_Out_Limit->text().toFloat();
-		break;
-	case AUTOSTRAIGHTENING:
-		m_AutoStraightening_P = tmp_P = m_ui->lineEdit_Saved_P->text().toFloat();
-		m_AutoStraightening_I = tmp_I = m_ui->lineEdit_Saved_I->text().toFloat();
-		m_AutoStraightening_D = tmp_D = m_ui->lineEdit_Saved_D->text().toFloat();
-		m_AutoStraightening_I_Limit = tmp_I_Limit = m_ui->lineEdit_Saved_I_Limit->text().toFloat();
-		m_AutoStraightening_Out_Limit = tmp_Out_Limit = m_ui->lineEdit_Saved_Out_Limit->text().toFloat();
-		break;
-	default:
-		break;
-	}
+	m_P[m_pidType] = m_ui->lineEdit_Saved_P->text().toFloat();
+	m_I[m_pidType] = m_ui->lineEdit_Saved_I->text().toFloat();
+	m_D[m_pidType] = m_ui->lineEdit_Saved_D->text().toFloat();
+	m_I_Limit[m_pidType] = m_ui->lineEdit_Saved_I_Limit->text().toFloat();
+	m_Out_Limit[m_pidType] = m_ui->lineEdit_Saved_Out_Limit->text().toFloat();
+
 	m_SerialPort->write(tr("set_pid %1 %2 %3 %4 %5 %6 %7\r\n")
 							.arg(currentMotor)
 							.arg(m_pidType)
-							.arg(tmp_P)
-							.arg(tmp_I)
-							.arg(tmp_D)
-							.arg(tmp_I_Limit)
-							.arg(tmp_Out_Limit)
+							.arg(m_P[m_pidType])
+							.arg(m_I[m_pidType])
+							.arg(m_D[m_pidType])
+							.arg(m_I_Limit[m_pidType])
+							.arg(m_Out_Limit[m_pidType])
 							.toLocal8Bit());
 }
 void ControlPanel::updatePIDType(int type) {
 	m_pidType = (PID_TYPE)type;
-	switch (m_pidType) {
-	case A2V:
-		m_ui->lineEdit_Saved_P->setText(QString::number(m_A2V_P));
-		m_ui->lineEdit_Saved_I->setText(QString::number(m_A2V_I));
-		m_ui->lineEdit_Saved_D->setText(QString::number(m_A2V_D));
-		m_ui->lineEdit_Saved_I_Limit->setText(QString::number(m_A2V_I_Limit));
-		m_ui->lineEdit_Saved_Out_Limit->setText(QString::number(m_A2V_Out_Limit));
-		break;
-	case V2I:
-		m_ui->lineEdit_Saved_P->setText(QString::number(m_V2I_P));
-		m_ui->lineEdit_Saved_I->setText(QString::number(m_V2I_I));
-		m_ui->lineEdit_Saved_D->setText(QString::number(m_V2I_D));
-		m_ui->lineEdit_Saved_I_Limit->setText(QString::number(m_V2I_I_Limit));
-		m_ui->lineEdit_Saved_Out_Limit->setText(QString::number(m_V2I_Out_Limit));
-		break;
-	case AUTOSTRAIGHTENING:
-		m_ui->lineEdit_Saved_P->setText(QString::number(m_AutoStraightening_P));
-		m_ui->lineEdit_Saved_I->setText(QString::number(m_AutoStraightening_I));
-		m_ui->lineEdit_Saved_D->setText(QString::number(m_AutoStraightening_D));
-		m_ui->lineEdit_Saved_I_Limit->setText(QString::number(m_AutoStraightening_I_Limit));
-		m_ui->lineEdit_Saved_Out_Limit->setText(QString::number(m_AutoStraightening_Out_Limit));
-		break;
-	default:
-		break;
-	}
+	m_ui->lineEdit_Saved_P->setText(QString::number(m_P[m_pidType]));
+	m_ui->lineEdit_Saved_I->setText(QString::number(m_I[m_pidType]));
+	m_ui->lineEdit_Saved_D->setText(QString::number(m_D[m_pidType]));
+	m_ui->lineEdit_Saved_I_Limit->setText(QString::number(m_I_Limit[m_pidType]));
+	m_ui->lineEdit_Saved_Out_Limit->setText(QString::number(m_Out_Limit[m_pidType]));
+	m_ui->label_ExactP->setText(QString::number(m_P[m_pidType]));
+	m_ui->label_ExactI->setText(QString::number(m_I[m_pidType]));
+	m_ui->label_ExactD->setText(QString::number(m_D[m_pidType]));
+	m_ui->label_ExactI_Limit->setText(QString::number(m_I_Limit[m_pidType]));
+	m_ui->label_ExactOut_Limit->setText(QString::number(m_Out_Limit[m_pidType]));
 }
-void ControlPanel::sendAngle() {}
-void ControlPanel::sendVelocity() {}
+void ControlPanel::sendAngle() {
+	m_SerialPort->write(
+		tr("set_target_angle %1 %2\r\n").arg(currentMotor).arg(m_ui->lineEdit_Saved_TargetA->text().toFloat()).toLocal8Bit());
+}
+void ControlPanel::sendVelocity() {
+	m_SerialPort->write(
+		tr("set_target_vel %1 %2\r\n").arg(currentMotor).arg(m_ui->lineEdit_Saved_TargetV->text().toFloat()).toLocal8Bit());
+}
