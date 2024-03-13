@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1200</width>
-    <height>900</height>
+    <width>800</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,16 +23,23 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1200</width>
-     <height>22</height>
+     <width>800</width>
+     <height>36</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuShit">
+   <widget class="QMenu" name="menuPID">
     <property name="title">
-     <string>Shit</string>
+     <string>PID</string>
     </property>
+    <addaction name="actionAdjustP"/>
+    <addaction name="actionAdjustI"/>
+    <addaction name="actionAdjustD"/>
+    <addaction name="actionIncreaseScale"/>
+    <addaction name="actionDecreaseScale"/>
+    <addaction name="actionIncreaseAmount"/>
+    <addaction name="actionDecreaseAmount"/>
    </widget>
-   <addaction name="menuShit"/>
+   <addaction name="menuPID"/>
   </widget>
   <widget class="QToolBar" name="toolBar">
    <property name="windowTitle">
@@ -46,6 +53,89 @@
    </attribute>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionAdjustP">
+   <property name="text">
+    <string>AdjustP</string>
+   </property>
+   <property name="toolTip">
+    <string>Test</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionAdjustI">
+   <property name="text">
+    <string>AdjustI</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+I</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionAdjustD">
+   <property name="text">
+    <string>AdjustD</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+D</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionIncreaseScale">
+   <property name="text">
+    <string>IncreaseScale</string>
+   </property>
+   <property name="toolTip">
+    <string>IncreaseScale</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+]</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionDecreaseScale">
+   <property name="text">
+    <string>DecreaseScale</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+[</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionIncreaseAmount">
+   <property name="text">
+    <string>IncreaseAmount</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+=</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionDecreaseAmount">
+   <property name="text">
+    <string>DecreaseAmount</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+-</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
  </widget>
  <resources>
   <include location="resources.qrc"/>

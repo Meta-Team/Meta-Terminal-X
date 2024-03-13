@@ -13,6 +13,9 @@ class TerminalWindow:public QMainWindow{
         ~TerminalWindow();
     protected:
         void closeEvent(QCloseEvent*) override;
+    private:
+        void bindControlPanel();
+        void unbindControlPanel();
     public slots:
         void showStatusMessage(const QString&, int);
 };

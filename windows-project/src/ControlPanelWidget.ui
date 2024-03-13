@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>959</width>
-    <height>693</height>
+    <width>800</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -60,7 +60,7 @@
       </layout>
      </item>
      <item>
-      <layout class="QVBoxLayout" name="verticalLayout_Status" stretch="2,5,1">
+      <layout class="QVBoxLayout" name="verticalLayout_Status" stretch="2,0,5,0,1">
        <property name="leftMargin">
         <number>2</number>
        </property>
@@ -156,36 +156,57 @@
         </layout>
        </item>
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_8" stretch="0">
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
          <item>
-          <layout class="QGridLayout" name="gL_PID" rowstretch="0,0,0,0,0,0,0" columnstretch="1,2,1,0,1">
-           <item row="5" column="2">
-            <widget class="QLineEdit" name="lineEdit_Saved_Out_Limit"/>
-           </item>
-           <item row="5" column="0">
-            <widget class="QLabel" name="label_7">
-             <property name="text">
-              <string>Out_Limit</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-            </widget>
-           </item>
+          <spacer name="horizontalSpacer_4">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_10">
+           <property name="text">
+            <string>CurrentPIDType:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="comboBox_PIDType"/>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_PID" stretch="0">
+         <item>
+          <layout class="QGridLayout" name="gL_PID" rowstretch="0,0,0,0,0,0,0,0,0" columnstretch="1,5,1,1">
            <item row="4" column="2">
             <widget class="QLineEdit" name="lineEdit_Saved_I_Limit"/>
            </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="label_3">
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_4">
              <property name="text">
-              <string>P</string>
+              <string>I</string>
              </property>
              <property name="alignment">
               <set>Qt::AlignCenter</set>
              </property>
             </widget>
            </item>
-           <item row="6" column="0">
+           <item row="0" column="3">
+            <widget class="QLabel" name="label_20">
+             <property name="text">
+              <string>Exact</string>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="0">
             <spacer name="verticalSpacer">
              <property name="orientation">
               <enum>Qt::Vertical</enum>
@@ -198,17 +219,57 @@
              </property>
             </spacer>
            </item>
-           <item row="0" column="4">
-            <widget class="QLabel" name="label_20">
+           <item row="3" column="0">
+            <widget class="QLabel" name="label_5">
              <property name="text">
-              <string>Exact</string>
+              <string>D</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
              </property>
             </widget>
            </item>
-           <item row="0" column="2">
-            <widget class="QLabel" name="label_19">
+           <item row="4" column="3">
+            <widget class="QLabel" name="label_ExactI_Limit">
              <property name="text">
-              <string>Saved</string>
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QLineEdit" name="lineEdit_Saved_P"/>
+           </item>
+           <item row="6" column="0">
+            <widget class="QLabel" name="label_8">
+             <property name="text">
+              <string>TargetA</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="3">
+            <widget class="QLabel" name="label_ExactI">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="2">
+            <widget class="QLineEdit" name="lineEdit_Saved_Out_Limit"/>
+           </item>
+           <item row="3" column="3">
+            <widget class="QLabel" name="label_ExactD">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2">
+            <widget class="QLineEdit" name="lineEdit_Saved_I"/>
+           </item>
+           <item row="5" column="3">
+            <widget class="QLabel" name="label_ExactOut_Limit">
+             <property name="text">
+              <string/>
              </property>
             </widget>
            </item>
@@ -222,47 +283,32 @@
              </property>
             </widget>
            </item>
-           <item row="2" column="0">
-            <widget class="QLabel" name="label_4">
+           <item row="0" column="2">
+            <widget class="QLabel" name="label_19">
              <property name="text">
-              <string>I</string>
+              <string>Saved</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="label">
+             <property name="text">
+              <string>Precis.=1e1</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_3">
+             <property name="text">
+              <string>P</string>
              </property>
              <property name="alignment">
               <set>Qt::AlignCenter</set>
              </property>
             </widget>
-           </item>
-           <item row="1" column="2">
-            <widget class="QLineEdit" name="lineEdit_Saved_P"/>
-           </item>
-           <item row="2" column="2">
-            <widget class="QLineEdit" name="lineEdit_Saved_I"/>
            </item>
            <item row="3" column="2">
             <widget class="QLineEdit" name="lineEdit_Saved_D"/>
-           </item>
-           <item row="3" column="0">
-            <widget class="QLabel" name="label_5">
-             <property name="text">
-              <string>D</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="3">
-            <spacer name="horizontalSpacer_4">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
            </item>
            <item row="0" column="1">
             <spacer name="horizontalSpacer_5">
@@ -277,49 +323,101 @@
              </property>
             </spacer>
            </item>
-           <item row="0" column="0">
-            <widget class="QLabel" name="label">
+           <item row="5" column="0">
+            <widget class="QLabel" name="label_7">
              <property name="text">
-              <string>Precis.=1e1</string>
+              <string>Out_Limit</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
              </property>
             </widget>
            </item>
-           <item row="1" column="4">
+           <item row="1" column="3">
             <widget class="QLabel" name="label_ExactP">
              <property name="text">
               <string/>
              </property>
             </widget>
            </item>
-           <item row="2" column="4">
-            <widget class="QLabel" name="label_ExactI">
+           <item row="7" column="0">
+            <widget class="QLabel" name="label_9">
              <property name="text">
-              <string/>
+              <string>TargetV</string>
              </property>
             </widget>
            </item>
-           <item row="3" column="4">
-            <widget class="QLabel" name="label_ExactD">
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
+           <item row="6" column="2">
+            <widget class="QLineEdit" name="lineEdit_Saved_TargetA"/>
            </item>
-           <item row="4" column="4">
-            <widget class="QLabel" name="label_ExactI_Limit">
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
-           </item>
-           <item row="5" column="4">
-            <widget class="QLabel" name="label_ExactOut_Limit">
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
+           <item row="7" column="2">
+            <widget class="QLineEdit" name="lineEdit_Saved_TargetV"/>
            </item>
           </layout>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_ModeSwitcher">
+         <item>
+          <widget class="QPushButton" name="pushButton_EnableA2V">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>E_A2V</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_DisableA2V">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>D_A2V</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_EnableV2I">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>E_V2I</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_DisableV2I">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>D_V2I</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_EnableFeedback">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>E_FB</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_DisableFeedback">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>D_FB</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>
@@ -339,23 +437,42 @@
           </spacer>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_EnableFeedback">
+          <widget class="QPushButton" name="pushButton_SendAngle">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="text">
-            <string>EnableFeedBack</string>
+            <string>SendAngle</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_FetchPID">
+          <widget class="QPushButton" name="pushButton_SendVelocity">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="text">
-            <string>FetchPID</string>
+            <string>SendVelocity</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_ApplyPID">
+          <widget class="QPushButton" name="pushButton_FetchParams">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="text">
-            <string>ApplyPID</string>
+            <string>FetchParams</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_SendParams">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>SendParams</string>
            </property>
           </widget>
          </item>
@@ -382,34 +499,6 @@
     </layout>
    </item>
   </layout>
-  <action name="actionAdjustP">
-   <property name="text">
-    <string>AdjustP</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+P</string>
-   </property>
-  </action>
-  <action name="actionadjustI">
-   <property name="text">
-    <string>adjustI</string>
-   </property>
-  </action>
-  <action name="actionadjustD">
-   <property name="text">
-    <string>adjustD</string>
-   </property>
-  </action>
-  <action name="actionadjustI_Limit">
-   <property name="text">
-    <string>adjustI_Limit</string>
-   </property>
-  </action>
-  <action name="actionadjustOut_Limit">
-   <property name="text">
-    <string>adjustOut_Limit</string>
-   </property>
-  </action>
  </widget>
  <resources/>
  <connections/>

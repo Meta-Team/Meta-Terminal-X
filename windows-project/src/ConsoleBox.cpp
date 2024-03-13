@@ -1,7 +1,7 @@
 #include <ConsoleBox.hpp>
 #include <qnamespace.h>
 ConsoleBox::ConsoleBox(QWidget *parent) : QPlainTextEdit(parent) {
-	document()->setMaximumBlockCount(100);
+	document()->setMaximumBlockCount(10);
 	QPalette p = palette();
 	// set color palette
 	p.setColor(QPalette::Base, Qt::black);

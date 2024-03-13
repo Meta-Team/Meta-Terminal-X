@@ -8,6 +8,7 @@ TerminalWindow::TerminalWindow() : m_ui(new Ui::TerminalWindow()), m_ControlPane
 	m_ui->setupUi(this);
 	// m_ui->statusbar->showMessage("Hello",2000);
 	connect(m_ControlPanel, &ControlPanel::showStatusMessage, this, &TerminalWindow::showStatusMessage);
+	bindControlPanel();
 	setCentralWidget(m_ControlPanel);
 }
 TerminalWindow::~TerminalWindow() {
@@ -29,3 +30,21 @@ void TerminalWindow::closeEvent(QCloseEvent *event) {
 	}
 }
 void TerminalWindow::showStatusMessage(const QString &msg, int timeout) { m_ui->statusbar->showMessage(msg, timeout); }
+void TerminalWindow::bindControlPanel() {
+	connect(m_ui->actionAdjustP, SIGNAL(triggered()), m_ControlPanel, SLOT(focusP()));
+	connect(m_ui->actionAdjustI, SIGNAL(triggered()), m_ControlPanel, SLOT(focusI()));
+	connect(m_ui->actionAdjustD, SIGNAL(triggered()), m_ControlPanel, SLOT(focusD()));
+	connect(m_ui->actionDecreaseAmount, SIGNAL(triggered()), m_ControlPanel, SLOT(decreaseAmount()));
+	connect(m_ui->actionDecreaseScale, SIGNAL(triggered()), m_ControlPanel, SLOT(decreaseScale()));
+	connect(m_ui->actionIncreaseAmount, SIGNAL(triggered()), m_ControlPanel, SLOT(increaseAmount()));
+	connect(m_ui->actionIncreaseScale, SIGNAL(triggered()), m_ControlPanel, SLOT(increaseScale()));
+}
+void TerminalWindow::unbindControlPanel() {
+	disconnect(m_ui->actionAdjustP, SIGNAL(triggered()), m_ControlPanel, SLOT(focusP()));
+	disconnect(m_ui->actionAdjustI, SIGNAL(triggered()), m_ControlPanel, SLOT(focusI()));
+	disconnect(m_ui->actionAdjustD, SIGNAL(triggered()), m_ControlPanel, SLOT(focusD()));
+	disconnect(m_ui->actionDecreaseAmount, SIGNAL(triggered()), m_ControlPanel, SLOT(decreaseAmount()));
+	disconnect(m_ui->actionDecreaseScale, SIGNAL(triggered()), m_ControlPanel, SLOT(decreaseScale()));
+	disconnect(m_ui->actionIncreaseAmount, SIGNAL(triggered()), m_ControlPanel, SLOT(increaseAmount()));
+	disconnect(m_ui->actionIncreaseScale, SIGNAL(triggered()), m_ControlPanel, SLOT(increaseScale()));
+}
