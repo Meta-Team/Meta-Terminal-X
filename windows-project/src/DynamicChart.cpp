@@ -26,7 +26,7 @@ QChart *DynamicChart::createLineChart() {
 	m_chart->createDefaultAxes();
 	// x-axis range
 	// default 5.0s
-	setXRange(0.0f, 5.0f);
+	setXRange(0.0f, xAxisStride);
 	setYRange(-190.0f, 190.0f);
 	// auto range adaption
 
@@ -49,7 +49,7 @@ DynamicChart::DynamicChart(QWidget *parent, const QString &name)
  */
 void DynamicChart::updateData(unsigned timestamp, float actualData, float targetData) {
 	lastTimestamp = timestamp / 1000.f;
-	setXRange(lastTimestamp - 5.0f, lastTimestamp);
+	setXRange(lastTimestamp - xAxisStride, lastTimestamp);
 	m_seriesActual->append((float)timestamp / 1000.f, actualData);
 	m_seriesTarget->append((float)timestamp / 1000.f, targetData);
 
@@ -57,8 +57,8 @@ void DynamicChart::updateData(unsigned timestamp, float actualData, float target
 	float maxY = 0.0f;
 	int shownId = 0;
 	while (1) {
-		if (m_seriesActual->at(0).x() < lastTimestamp - 5.0f) {
-			// delete potential out-of-range data
+		if (m_seriesActual->at(0).x() < lastTimestamp - xAxisStride || m_seriesTarget->at(0).x() > lastTimestamp){
+			// delete potential out-of-range data and data after client reboot(the STM32 restart then get a new timestamp)
 			m_seriesActual->remove(0);
 			m_seriesTarget->remove(0);
 		} else {
@@ -84,4 +84,7 @@ void DynamicChart::setYRange(float min, float max) {
 // tool function for setting x range
 void DynamicChart::setXRange(float min, float max) {
 	m_chart->axes(Qt::Horizontal).first()->setRange(min, max);
+}
+void DynamicChart::setXStride(float stride){
+	xAxisStride = stride;
 }

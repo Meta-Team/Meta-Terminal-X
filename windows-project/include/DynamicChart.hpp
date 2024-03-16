@@ -12,11 +12,12 @@ class DynamicChart : public QChartView {
 	QChart *m_chart;
 	QChart *createLineChart();
 	float lastTimestamp;
-
+	float xAxisStride=2.0f;
 
   public:
 	DynamicChart(QWidget *, const QString &);
 	void updateData(unsigned timestamp, float actualData, float targetData);
 	void setYRange(float min, float max);
 	void setXRange(float min, float max);
+	void setXStride(float stride);
 };
