@@ -21,11 +21,11 @@ ControlPanel::ControlPanel()
 
 	// add charts
 	m_ui->verticalLayout_Console->addWidget(m_ConsoleBox);
-	m_dynamicChartView[A_CHART] = new DynamicChart(this, "Angle");
+	m_dynamicChartView[A_CHART] = new DynamicChart(this, "Angle(Accumulated)/degrees");
 	m_dynamicChartView[A_CHART]->setYRange(-190.0f, 190.0f);
-	m_dynamicChartView[V_CHART] = new DynamicChart(this, "Velocity");
+	m_dynamicChartView[V_CHART] = new DynamicChart(this, "Velocity/degrees/s");
 	m_dynamicChartView[V_CHART]->setYRange(-500.0f, 500.0f);
-	m_dynamicChartView[I_CHART] = new DynamicChart(this, "Current");
+	m_dynamicChartView[I_CHART] = new DynamicChart(this, "Torque Current");
 	m_dynamicChartView[I_CHART]->setYRange(-500.f, 500.f);
 	m_ui->hL_Charts->addWidget(m_dynamicChartView[A_CHART]);
 	m_ui->hL_Charts->addWidget(m_dynamicChartView[V_CHART]);
